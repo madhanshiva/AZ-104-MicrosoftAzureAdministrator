@@ -32,17 +32,17 @@ In this exercise you will learn how to organize Azure subscriptions effectively 
 
 In this task, you will create and organize management groups to streamline Azure subscription governance. This setup enables efficient policy enforcement and access management across your organization.
 
-1. On the Azure portal, in **Search resources, services and docs (G+/)** box at the top of the portal search for and select **Microsoft Entra ID**.
+1. On the Azure portal, in **Search resources, services and docs (G+/)** box at the top of the portal search for **Microsoft Entra ID (1)** and select **Microsoft Entra ID (2)**.
 
-   ![image](./media/l2-image3.png) 
+   ![image](./media/3-10-l2-1.png) 
     
 1.  On the blade displaying properties of your tenant, in the vertical menu on the left side, in the **Manage** section, select **Properties**.
   
-    ![image](./media/lab02-new-1.png) 
+    ![image](./media/3-10-l2-2.png) 
     
-1.  On the **Properties** blade of your tenant, in the **Access management for Azure resources** section, select **Yes** and then select **Save**.
+1.  On the **Properties** blade of your tenant, in the **Access management for Azure resources** section, select **Yes (1)** and then select **Save (2)**.
 
-    ![image](./media/l2-image5.png) 
+    ![image](./media/3-10-l2-3.png) 
 
 1. On the Azure Portal page, in **Search resources, services and docs (G+/)** box at the top of the portal, enter **Management groups**, and then select **Management groups** under services.
 
@@ -52,12 +52,14 @@ In this task, you will create and organize management groups to streamline Azure
   
 1. On the **Management groups** blade, click **+ Create**.
 
-1. On **Create a management** group blade specify the following settings and click **Submit**.
+     ![image](./media/3-10-l2-4.png) 
+
+1. On **Create a management** group blade specify the following settings and click **Submit (3)**.
 
       | Setting | Value |
       | --- | --- |
-      | Management group ID | **az104-02-mg1** |
-      | Management group display name | **az104-02-mg1** |
+      | Management group ID | **az104-02-mg1 (1)** |
+      | Management group display name | **az104-02-mg1 (2)** |
 
       ![image](./media/l2-image7.png)
 
@@ -75,7 +77,7 @@ In this task, you will create and organize management groups to streamline Azure
    
 1. On the **az104-02-mg1 \| Subscriptions** blade, refresh the page and  copy the ID of your Azure subscription into Clipboard. You will need it in the next task.
        
-    ![image](./media/l2-image11.png)
+    ![image](./media/3-10-l2-5.png) 
    
 ## Task 2: Review and assign a built-in Azure role
 
@@ -83,23 +85,31 @@ In this task, you will review the built-in roles and assign the VM Contributor r
 
 1. Select the **az104-mg1** management group.
 
-1. Select the **Access control (IAM)** blade (1), and then the **Roles** (2) tab.
+1. Select the **Access control (IAM)** blade **(1)**, and then the **Roles (2)** tab.
 
-    ![image](./media/az1.png)
+    ![image](./media/3-10-l2-6.png) 
 
 1. Scroll through the built-in role definitions that are available. **View** a role to get detailed information about the **Permissions**, **JSON**, and **Assignments**. You will often use *owner*, *contributor*, and *reader*. 
 
-1. Select **+ Add**, from the drop-down menu, select **Add role assignment**. 
+1. Select **+ Add (1)**, from the drop-down menu, select **Add role assignment (2)**. 
 
-1. On the **Add role assignment** blade, search for and select the **Virtual Machine Contributor**. The Virtual machine contributor role lets you manage virtual machines, but not access their operating system or manage the virtual network and storage account they are connected to. Select **Next**.
+    ![image](./media/3-10-l2-7.png) 
+
+1. On the **Add role assignment** blade, search for and select the **Virtual Machine Contributor (2)**. The Virtual machine contributor role lets you manage virtual machines, but not access their operating system or manage the virtual network and storage account they are connected to. Select **Next (3)**.
+
+    ![image](./media/3-10-l2-8.png) 
 
     >**Did you know?** Azure originally provided only the **Classic** deployment model. This has been replaced by the **Azure Resource Manager** deployment model. As a best practice, do not use classic resources. 
 
-1. On the **Members** tab, select **+ Select members**.
+1. On the **Members** tab, select **+ Select members (1)**.
 
-1. Search for and select the  <inject key="AzureAdUserEmail"></inject> user and click on **Select**. 
+1. Search for and select the  <inject key="AzureAdUserEmail"></inject>  **(2)** user and click on **Select (3)**. 
+
+    ![image](./media/3-10-l2-9.png) 
 
 1. Click **Review + assign** twice to create the role assignment.
+
+    ![image](./media/3-10-l2-10.png) 
 
    >**Did you know?** This assignment might not actually grant you any additional privileges. If you already have the Owner role, that role includes all permissions associated with the VM Contributor role.
     
@@ -107,44 +117,50 @@ In this task, you will review the built-in roles and assign the VM Contributor r
 
 In this task, you will create a custom RBAC role. Custom roles are a core part of implementing the principle of least privilege for an environment. Built-in roles might have too many permissions for your scenario. We will also create a new role and remove permissions that are not be necessary. Do you have a plan for managing overlapping permissions?
 
-1. Continue working on your management group. In the **Access control (IAM)** blade, select the **Check access** tab and in the **Create a custom role** box, select **Add**.
+1. Continue working on your management group. In the **Access control (IAM) (1)** blade, click **+ Add (2)** and select **Add custom role (3)**
 
-   ![image](./media/l2-image12.png)
+   ![image](./media/3-10-l2-11.png) 
 
-1. On the Basics tab specify the following configuration and select **Next**. 
+1. On the Basics tab specify the following configuration and select **Next (5)**. 
 
     | Setting | Value |
     | --- | --- |
-    | Custom role name | `Support Request Contributor(Custom)` |
-    | Description | A custom contributor role for support requests. |
-    | Baseline permissions | select **Clone a role**|
-    | Role to clone drop-down menu | select **Support Request Contributor** |
+    | Custom role name | `Support Request Contributor(Custom)` **(1)** |
+    | Description | A custom contributor role for support requests. **(2)**|
+    | Baseline permissions | select **Clone a role (3)**|
+    | Role to clone drop-down menu | select **Support Request Contributor (4)** |
 
-     ![image](./media/l2-image44.png)
+     ![image](./media/3-10-l2-12.png)
 
 1. On **Permissions** tab, and then select **+ Exclude permissions**.
 
-   ![image](./media/l2-image14.png)
+   ![image](./media/3-10-l2-13.png)
    
-1. In the resource provider search field, enter `.Support` and select **Microsoft.Support**.
+1. In the resource provider search field, enter `.Support` **(1)** and select **Microsoft.Support (2)**.
 
-   ![image](./media/l2-image15.png)
+   ![image](./media/3-10-l2-14.png)
 
-1. In the list of permissions, place a checkbox next to **Other: Registers Support Resource Provider** and then select **Add** and then click  **Next**. The role should be updated to include this permission as a *NotAction*.
+1. In the list of permissions, place a checkbox next to **Other: Registers Support Resource Provider (1)** and then select **Add (2)** and then click  **Next**. The role should be updated to include this permission as a *NotAction*.
 
-    ![image](./media/l2-image16.png)
+    ![image](./media/3-10-l2-15.png)
+
+    ![image](./media/3-10-l2-16.png)
    
     >**Note:** An Azure resource provider is a set of REST operations that enable functionality for a specific Azure service. We do not want the Help Desk to be able to have this capability, so it is being removed from the cloned role. 
 
-1. On the **Assignable scopes** tab, ensure your management group is listed, then click **Next**.
+1. On the **Assignable scopes** tab, ensure your management group is listed **(1)**, then click **Next (2)**.
 
-    ![image](./media/l2-image17.png)
+    ![image](./media/3-10-l2-17.png)
 
 1. Review the JSON for the *Actions*, *NotActions*, and *AssignableScopes* that are customized in the role.
 
-   ![image](./media/l2-image18.png)
+   ![image](./media/3-10-l2-18.png)
 
 1. Select **Review + create**, and then select **Create**. Select **OK** when you see the pop up **You have successfully created the custom role "Custom Support Request". It may take the system a few minutes to display your role everywhere**. 
+
+    ![image](./media/3-10-l2-19.png)
+
+    ![image](./media/3-10-l2-20.png)
 
     >**Note:** At this point, you have created a custom role and assigned it to the management group. 
 
@@ -156,39 +172,41 @@ In this task, you will create a Microsoft Entra ID user, assign the RBAC role yo
 
    ![image](./media/l2-image19.png)
   
-1. Create a new user with the following settings (leave others with their defaults) and click on **Review + create** (6)
+1. Create a new user with the following settings (leave others with their defaults) and click on **Review + create (6)**
 
     | Setting | Value |
     | --- | --- |
-    | User Principal name | **az104-02-aaduser1** (1)|
-    | Display name | **az104-02-aaduser1** (2)|
-    | Auto-generate password | unchecked (3) |
-    | Password | **Provide a secure password** (4) |
-    | Account enabled | **Checked** (5) |
+    | User Principal name | **az104-02-aaduser1 (1)**|
+    | Display name | **az104-02-aaduser1 (2)**|
+    | Auto-generate password | unchecked **(3)** |
+    | Password | **Provide a secure password (4)** |
+    | Account enabled | **Checked (5)** |
 
-    >**Note**: **Copy to clipboard** the full **User name**. You will need it later in this lab.
+    >**Note:** **Copy to clipboard** the full **User name**. You will need it later in this lab.
 
-    ![image](./media/l2-image(20).png)
+    ![image](./media/3-10-l2-22.png)
 
 1. Click **Create**.
    
+    ![image](./media/3-10-l2-23.png)
+
 1. In the Azure portal, navigate back to the Management group and and select **az104-02-mg1** to display its **details**.
 
-   ![image](./media/l2-image21.png)
+   ![image](./media/3-10-l2-24.png)
 
 1. Click **Access control (IAM)**, click **+ Add** and then **Add role assignment**.
 
     ![image](./media/l2-image22.png)
 
-   >**Note**: If your custom role is not visible, it can take up to 10 minutes for the custom role to appear after creation.
+   >**Note:** If your custom role is not visible, it can take up to 10 minutes for the custom role to appear after creation.
 
-1. Search and select **Support Request Contributor (Custom)**. Click **Next**.
+1. Search **Support Request Contributor (Custom) (1)** and select **Support Request Contributor (Custom) (2)**. Click **Next (3)**.
 
-    ![image](./media/l2-image58.png)
+    ![image](./media/3-10-l2-26.png)
   
-1. On the **Members** tab, click **+ Select members** and **select** user account **az104-02-aaduser1**. Click **Select** and then **Review and assign** twice.
+1. On the **Members** tab, click **+ Select members (1)** and **select** user account **az104-02-aaduser1 (2)**. Click **Select (3)** and then **Review and assign** twice.
 
-     ![image](./media/l2-image59.png)
+     ![image](./media/3-10-l2-27.png)
     
 1. Open an **InPrivate** browser window and sign in to the [Azure portal](https://portal.azure.com) using the newly created user account. When prompted to update the password, change the password for the user.
 
@@ -198,11 +216,11 @@ In this task, you will create a Microsoft Entra ID user, assign the RBAC role yo
 
    >**Note**: You can copy the username for the newly created user by navigating to the Microsoft Entra ID --> Users section.
 
-1. In the **InPrivate** browser window, in the Azure portal, search and select **Resource groups** to verify that the az104-02-aaduser1 user can see all resource groups.
+1. In the **InPrivate** browser window, in the Azure portal, search **Resource groups (1)** and select **Resource groups (2)** to verify that the az104-02-aaduser1 user can see all resource groups.
  
-    ![image](./media/l2-image45.png)
+    ![image](./media/3-10-l2-30.png)
 
-    ![image](./media/l2-image46.png)
+    ![image](./media/3-10-l2-31.png)
    
 1. In the **InPrivate** browser window, in the Azure portal, select **All resources** to verify that the az104-02-aaduser1 user cannot see any resources.
 
@@ -210,35 +228,37 @@ In this task, you will create a Microsoft Entra ID user, assign the RBAC role yo
 
 1. Verify that the az104-02-aaduser1 user cannot see any resources.
 
-    ![image](./media/l2-image48.png)
+    ![image](./media/3-10-l2-32.png)
    
-1. In the **InPrivate** browser window, in the Azure portal, search and select **Help + support**. 
+1. In the **InPrivate** browser window, in the Azure portal, search **Help + support (1)** and select **Help + support (2)**. 
    
-   ![image](./media/l2-image50.png)
+   ![image](./media/3-10-l2-33.png)
 
 1. Click **Create a support request**.
 
-   ![image](./media/l2-image51.png)
+   ![image](./media/3-10-l2-34.png)
    
-1. In the **InPrivate** browser window, on the **Describe your issue** tab of the **Help + support** blade, type **Service and subscription limits** (1) and select **Go** (2).
+1. In the **InPrivate** browser window, on the **Describe your issue** tab of the **Help + support** blade, type **Service and subscription limits (1)** and select **Go (2)**.
 
-    ![image](./media/az1043.png)
+    ![image](./media/3-10-l2-35.png)
 
-1. Under the **Which service are you having an issue with?** select the **Service and subscription limits (quotas)** issue type. Select **Next** (4).
+1. Under the **Which service are you having an issue with?** select the **Service and subscription limits (quotas) (3)** issue type. Select **Next (4)**.
 
-    ![image](./media/az1044.png)
+    ![image](./media/3-10-l2-36.png)
+
+    ![image](./media/3-10-l2-37.png)
 
 1. Select **Create a support request** under Service and subscription limits (quotas).
 
-   ![image](./media/az1045.png)
+   ![image](./media/3-10-l2-38.png)
 
-1. In the **InPrivate** browser window, on the **Problem Description** tab of the **Help + support - New support request** blade, **Service and subscription limits (quotas)** (1) as issue type is selected. Note that the subscription you are using in this lab is listed in the **Subscription** (2) drop-down list.
+1. In the **InPrivate** browser window, on the **Problem Description** tab of the **Help + support - New support request** blade, **Service and subscription limits (quotas) (1)** as issue type is selected. Note that the subscription you are using in this lab is listed in the **Subscription (2)** drop-down list.
     
-    ![image](./media/az3.1.png)
+    ![image](./media/3-10-l2-39.png)
 
-    >**Note**: The presence of the subscription you are using in this lab in the **Subscription** drop-down list indicates that the account you are using has the permissions required to create the subscription-specific support request.
+    >**Note:** The presence of the subscription you are using in this lab in the **Subscription** drop-down list indicates that the account you are using has the permissions required to create the subscription-specific support request.
 
-    >**Note**: If you do not see the **Service and subscription limits (quotas)** option, sign out from the Azure portal and sign in back.
+    >**Note:** If you do not see the **Service and subscription limits (quotas)** option, sign out from the Azure portal and sign in back.
 
 1. Do not continue with creating the support request. Instead, sign out as the az104-02-aaduser1 user from the Azure portal and close the InPrivate browser window.
 
@@ -263,29 +283,29 @@ In this task, you will review the Azure activity log to check for any actions in
 
 1. In the Azure portal, navigate back to the **Management groups** blade. 
 
-1. On the **Management groups** blade choose **az104-02-mg1**, select **Access control (IAM)** then under **Roles** tab search for **Support Request Contributor (Custom)** under details select **View** link and select **Assignment** tab > **Remove** and select **yes**.
+1. On the **Management groups** blade choose **az104-02-mg1**, select **Access control (IAM) (1)** then under **Roles (2)** tab search for **Support Request Contributor (Custom) (3)** under details select **View (4)** link and select **Assignment (1)** tab > **Remove (2)** and select **yes**.
 
-   ![image](./media/l2-image60.png)
+   ![image](./media/3-10-l2-40.png)
    
-   ![image](./media/l2-image54.png)
+   ![image](./media/3-10-l2-41.png)
    
-1. Back on **az104-02-mg1 | Access control (IAM)** Refresh the page on click on  **Support Request Contributor (Custom)** select **ellipsis** and click **Delete**.
+1. Back on **az104-02-mg1 | Access control (IAM) (1)** Refresh the page on click on  **Support Request Contributor (Custom)** select **ellipsis (2)** and click **Delete (3)**.
    
-    ![image](./media/l2-image53.png)
+    ![image](./media/3-10-l2-42.png)
 
-1. In the Azure portal, navigate back to the **Users - All users** blade of the **Microsoft Entra ID**, and select  **az104-02-aaduser1** user account click on **Delete**.
+1. In the Azure portal, navigate back to the **Users - All users** blade of the **Microsoft Entra ID**, and select  **az104-02-aaduser1 (1)** user account click on **Delete (2)**.
 
-    ![image](./media/l2-image57.png)
+    ![image](./media/3-10-l2-43.png)
    
 1. In the Azure portal, search and select **Management groups**.
    
-1. On the **Management groups** blade,  select the **ellipsis** icon next to your subscription under the **az104-02-mg1** management group and select **Move** to move the subscription to the **Tenant Root management group**.
+1. On the **Management groups** blade,  select the **ellipsis (1)** icon next to your subscription under the **az104-02-mg1** management group and select **Move (2)** to move the subscription to the **Tenant Root management group**.
 
-    ![image](./media/l2-image55.png)
+    ![image](./media/3-10-l2-44.png)
    
-    ![image](./media/l2-image56.png)
+    ![image](./media/3-10-l2-45.png)
 
-   >**Note**: It is likely that the target management group is the **Tenant Root management group**, unless you created a custom management group hierarchy before running this lab.
+   >**Note:** It is likely that the target management group is the **Tenant Root management group**, unless you created a custom management group hierarchy before running this lab.
    
 1. Select **Refresh** to verify that the subscription has successfully moved to the **Tenant Root management group**.
 
@@ -328,3 +348,5 @@ Copilot can assist you in learning how to use the Azure scripting tools. Copilot
 + You can use the Activity Log to monitor role assignments.
 
 ### You have successfully completed the lab
+
+![Start Your Azure Journey](../media/num.png)
